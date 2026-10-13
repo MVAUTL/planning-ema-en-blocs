@@ -8,6 +8,8 @@ La page de connexion est automatiquement détectée et reste elle aussi dans son
 
 Le planning attend désormais le chargement complet des cours et se met à jour automatiquement si le site ajoute des journées après coup. Les événements longs, comme une journée de cohésion de 06:00 à 21:30, sont pris en charge. Une personne ou une promotion ouverte sans date arrive directement sur la semaine actuelle.
 
+Les liens hebdomadaires sans date, par exemple `index.php?url=eleve/20494/week/`, sont également ouverts automatiquement sur la semaine actuelle.
+
 Les cours portant la même référence numérique, par exemple `5.4.2`, utilisent toujours la même couleur dans le calendrier.
 
 Cette extension transforme automatiquement le planning texte de Mines Alès en grille hebdomadaire. Les cours sont placés verticalement selon leur heure de début et leur durée.

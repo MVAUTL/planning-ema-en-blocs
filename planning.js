@@ -202,7 +202,7 @@
 
   function undatedPlanningContext() {
     const route = new URL(window.location.href).searchParams.get("url") || "";
-    const match = route.match(/^(eleve|promo)\/(\d+)\/?$/i);
+    const match = route.match(/^(eleve|promo)\/(\d+)(?:\/week)?\/?$/i);
     return match ? { planningType: match[1].toLowerCase(), planningId: match[2] } : null;
   }
 
