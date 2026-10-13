@@ -1,0 +1,72 @@
+:root { color-scheme: light; }
+
+body.ema-enhanced > :not(#ema-planning-app) { display: none !important; }
+body.ema-enhanced.ema-show-original > :not(#ema-planning-app) { display: revert !important; }
+body.ema-enhanced.ema-show-original #ema-planning-app { position: fixed; right: 14px; bottom: 12px; z-index: 2147483647; width: auto; height: auto; min-height: 0; }
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-shell { min-height: 0; padding: 0; background: transparent; }
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-toolbar { padding: 0; background: transparent; box-shadow: none; }
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-original-button { min-height: 46px; padding: 13px 18px; box-shadow: 0 7px 20px rgba(23,32,51,.28); }
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-heading,
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-nav,
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-selection-link,
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-week-picker,
+body.ema-enhanced.ema-show-original #ema-planning-app .ema-calendar { display: none; }
+
+#ema-planning-app, #ema-planning-app * { box-sizing: border-box; }
+#ema-planning-app { display: block !important; min-height: 100vh; color: #18202d; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.35; }
+#ema-planning-app .ema-shell { min-height: 100vh; padding: 30px; background: #f3f6fb; }
+#ema-planning-app .ema-toolbar { display: flex; align-items: center; justify-content: space-between; max-width: 1500px; margin: 0 auto 18px; padding: 20px 24px; border: 1px solid #e3e8f0; border-radius: 18px; background: rgba(255,255,255,.94); box-shadow: 0 12px 35px rgba(31,45,70,.08); }
+#ema-planning-app h1 { margin: 0; color: #172033; font-size: 25px; letter-spacing: -.03em; }
+#ema-planning-app .ema-toolbar p { margin: 3px 0 0; color: #718096; font-size: 13px; }
+#ema-planning-app .ema-actions, #ema-planning-app .ema-nav { display: flex; align-items: center; gap: 8px; }
+#ema-planning-app .ema-selection-link { display: inline-flex; align-items: center; min-height: 38px; padding: 9px 12px; border: 1px solid #dce3ee; border-radius: 10px; background: #fff; color: #40506a; font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+#ema-planning-app .ema-selection-link:hover { border-color: #b9c7dd; background: #f3f6fb; color: #172033; }
+#ema-planning-app button { appearance: none; border: 0; border-radius: 10px; padding: 10px 15px; background: #172033; color: white; font: 600 13px/1.2 inherit; cursor: pointer; box-shadow: 0 5px 14px rgba(23,32,51,.16); }
+#ema-planning-app button:hover { background: #2b3958; transform: translateY(-1px); }
+#ema-planning-app .ema-nav-button { border: 1px solid #dce3ee; background: #fff; color: #344158; box-shadow: none; }
+#ema-planning-app .ema-nav-button:hover { background: #f2f5fa; }
+#ema-planning-app .ema-nav-previous::before { content: "← "; }
+#ema-planning-app .ema-nav-next::after { content: " →"; }
+#ema-planning-app .ema-nav-mode { border-color: #bcd0ff; background: #edf3ff; color: #315bb5; }
+#ema-planning-app .ema-week-picker { display: flex; align-items: center; gap: 12px; max-width: 1500px; margin: 0 auto 18px; padding: 12px 16px; border: 1px solid #dce4f0; border-radius: 14px; background: #fff; box-shadow: 0 8px 24px rgba(31,45,70,.06); }
+#ema-planning-app .ema-week-picker label { flex: 0 0 auto; color: #526078; font-size: 12px; font-weight: 750; }
+#ema-planning-app .ema-week-picker select { min-width: 270px; padding: 9px 34px 9px 11px; border: 1px solid #ced7e6; border-radius: 9px; outline: none; background: #f8faff; color: #26344d; font: 650 13px/1.2 inherit; cursor: pointer; }
+#ema-planning-app .ema-week-picker select:focus { border-color: #7195ee; box-shadow: 0 0 0 3px rgba(79,124,255,.13); }
+#ema-planning-app .ema-year-buttons { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+#ema-planning-app .ema-year-buttons strong { color: #344158; font-size: 13px; }
+#ema-planning-app .ema-year-button { padding: 8px 10px; border: 1px solid #dce3ee; background: #fff; color: #526078; box-shadow: none; font-size: 11px; }
+#ema-planning-app .ema-year-button:hover { background: #f2f5fa; }
+#ema-planning-app .ema-calendar { display: flex; width: 100%; max-width: 1500px; margin: 0 auto; overflow: visible; border: 1px solid #e3e8f0; border-radius: 18px; background: white; box-shadow: 0 16px 40px rgba(31,45,70,.09); }
+#ema-planning-app .ema-hours { position: relative; flex: 0 0 65px; margin-top: 53px; border-right: 1px solid #e9edf4; background: #fbfcfe; }
+#ema-planning-app .ema-hours span { position: absolute; right: 12px; z-index: 2; color: #8792a5; font-size: 11px; font-weight: 650; transform: translateY(-50%); }
+#ema-planning-app main { display: grid; grid-auto-columns: minmax(145px, 1fr); grid-auto-flow: column; min-width: max(650px, calc(100% - 65px)); flex: 1; }
+#ema-planning-app .ema-day { min-width: 0; border-right: 1px solid #e9edf4; }
+#ema-planning-app .ema-day:last-child { border-right: 0; }
+#ema-planning-app .ema-day header { position: sticky; top: 0; z-index: 5; height: 53px; padding: 17px 10px; overflow: hidden; border-bottom: 1px solid #e3e8f0; background: rgba(255,255,255,.96); color: #3c485d; font-size: 13px; font-weight: 750; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+#ema-planning-app .ema-day-body { position: relative; background: repeating-linear-gradient(to bottom, transparent 0, transparent 71px, #edf0f5 71px, #edf0f5 72px); }
+#ema-planning-app .ema-event { position: absolute; left: 5px; right: 5px; min-height: 34px; overflow: hidden; padding: 8px 9px; border-left: 4px solid; border-radius: 8px; box-shadow: 0 3px 8px rgba(25,37,61,.09); }
+#ema-planning-app .ema-event.ema-clickable { cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+#ema-planning-app .ema-event.ema-clickable:hover, #ema-planning-app .ema-event.ema-clickable:focus-visible { z-index: 4; outline: 2px solid rgba(79,124,255,.35); transform: translateY(-2px); box-shadow: 0 7px 16px rgba(25,37,61,.16); }
+#ema-planning-app .ema-event strong, #ema-planning-app .ema-event time, #ema-planning-app .ema-event span { display: block; overflow: hidden; text-overflow: ellipsis; }
+#ema-planning-app .ema-event strong { color: #1f2a3e; font-size: 12px; white-space: nowrap; }
+#ema-planning-app .ema-event time { margin-top: 2px; color: #526078; font-size: 10px; font-weight: 750; }
+#ema-planning-app .ema-event span { margin-top: 4px; color: #65728a; font-size: 10px; }
+#ema-planning-app .ema-blue { border-color:#4f7cff; background:#eaf0ff; } #ema-planning-app .ema-violet { border-color:#8b5cf6; background:#f1ebff; }
+#ema-planning-app .ema-green { border-color:#16a779; background:#e4f7f0; } #ema-planning-app .ema-orange { border-color:#e98b2a; background:#fff0df; }
+#ema-planning-app .ema-pink { border-color:#e35685; background:#ffe9f0; } #ema-planning-app .ema-cyan { border-color:#168ba5; background:#e2f5f8; }
+#ema-planning-app .ema-empty { max-width: 620px; margin: 80px auto; padding: 45px; border: 1px solid #e3e8f0; border-radius: 18px; background: white; text-align: center; box-shadow: 0 16px 40px rgba(31,45,70,.09); }
+#ema-planning-app .ema-empty h2 { margin-top: 0; } #ema-planning-app .ema-empty p { color: #718096; }
+
+@media (max-width: 700px) {
+  #ema-planning-app .ema-shell { padding: 12px; }
+  #ema-planning-app .ema-toolbar { padding: 15px; }
+  #ema-planning-app .ema-toolbar, #ema-planning-app .ema-actions { align-items: stretch; flex-direction: column; }
+  #ema-planning-app .ema-selection-link { justify-content: center; }
+  #ema-planning-app .ema-nav { flex-wrap: wrap; }
+  #ema-planning-app .ema-nav-button { flex: 1 1 auto; }
+  #ema-planning-app .ema-week-picker { align-items: stretch; flex-direction: column; }
+  #ema-planning-app .ema-week-picker select { width: 100%; min-width: 0; }
+  #ema-planning-app .ema-year-buttons { justify-content: space-between; margin-left: 0; }
+  #ema-planning-app h1 { font-size: 20px; }
+  #ema-planning-app .ema-toolbar button { padding: 9px 10px; font-size: 11px; }
+}
