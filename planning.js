@@ -8,6 +8,29 @@
   const RANGE_RE = /\b([01]?\d|2[0-3])\s*(?:h|:|\.)\s*([0-5]\d)?\s*(?:[-–—à]|\bau\b)\s*([01]?\d|2[0-3])\s*(?:h|:|\.)\s*([0-5]\d)?\b/i;
   const SINGLE_TIME_RE = /\b([01]?\d|2[0-3])\s*(?:h|:)\s*([0-5]\d)\b/g;
   const COLORS = ["blue", "violet", "green", "orange", "pink", "cyan"];
+  const CAMPUS_BASE = "https://campus2.mines-ales.fr";
+  const CAMPUS_CATEGORIES = {
+    "5.1": 556, "5.2": 557, "5.3": 558, "5.4": 559, "5.5": 560,
+    "6.1": 561, "6.2": 562, "6.3": 563, "6.4": 564, "6.5": 565,
+    "7.1": 554, "7.2": 555, "7.3b": 574, "7.4": 575, "7.6": 587,
+    "8.1": 566, "8.2": 576, "8.3": 577, "8.5": 578, "8.6": 586,
+    "9.1": 588, "9.2": 589, "9.3a": 590, "9.3b": 591, "9.4": 593, "9.5": 592
+  };
+  const CAMPUS_DIRECT_COURSES = {
+    "5.6": 2763,
+    "6.7": 2804,
+    "7.3a": 2776,
+    "7.5": 2779,
+    "8.4": 2840
+  };
+  const CAMPUS_NAMED_COURSES = [
+    { code: "5.1", words: ["analyse"], id: 2782 },
+    { code: "5.1", words: ["algebre"], id: 2783 },
+    { code: "5.2", words: ["analyse"], id: 2784 },
+    { code: "5.2", words: ["probabilites"], id: 2785 },
+    { code: "5.3", words: ["resistance", "materiaux"], id: 2786 },
+    { code: "5.3", words: ["mecanique", "milieux", "continus"], id: 2787 }
+  ];
   const originalTitle = document.title;
 
   function clean(value) {
@@ -172,6 +195,39 @@
     return COLORS[hash % COLORS.length];
   }
 
+  function normalizedCourseText(value) {
+    return value
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9.]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function campusUrlFor(event) {
+    const text = normalizedCourseText(event.details.join(" "));
+    const rawCode = text.match(/\b[5-9]\.\d+(?:\.(?:\d+|[ab]))?\b/)?.[0];
+    const code = rawCode?.replace(/\.(?=[ab]$)/, "");
+
+    const namedCourse = CAMPUS_NAMED_COURSES.find((course) =>
+      (!code || code.startsWith(course.code)) && course.words.every((word) => text.includes(word))
+    );
+    if (namedCourse) return `${CAMPUS_BASE}/course/view.php?id=${namedCourse.id}`;
+
+    if (code && CAMPUS_DIRECT_COURSES[code]) {
+      return `${CAMPUS_BASE}/course/view.php?id=${CAMPUS_DIRECT_COURSES[code]}`;
+    }
+
+    if (code) {
+      const categoryCode = CAMPUS_CATEGORIES[code] ? code : code.split(".").slice(0, 2).join(".");
+      if (CAMPUS_CATEGORIES[categoryCode]) {
+        return `${CAMPUS_BASE}/course/index.php?categoryid=${CAMPUS_CATEGORIES[categoryCode]}`;
+      }
+    }
+    return null;
+  }
+
   function collectNavigation() {
     return [...document.querySelectorAll("button, a")]
       .map((element) => {
@@ -294,10 +350,14 @@
         const title = details[0] || "Cours";
         const meta = details.slice(1).join(" · ");
         const color = eventColor(event, dayIndex + eventIndex);
-        return `<article class="ema-event ema-${color}" data-day="${dayIndex}" data-event="${eventIndex}" style="top:${top}px;height:${height}px" title="${escapeHtml(details.join(" — "))}">
+        const campusUrl = campusUrlFor(event);
+        const campusClass = campusUrl ? " ema-campus-linked" : "";
+        const tooltip = `${details.join(" — ")}${campusUrl ? " — Ouvrir dans Campus" : ""}`;
+        return `<article class="ema-event ema-${color}${campusClass}" data-day="${dayIndex}" data-event="${eventIndex}" style="top:${top}px;height:${height}px" title="${escapeHtml(tooltip)}">
           <strong>${escapeHtml(title)}</strong>
           <time>${formatTime(event.start)} – ${formatTime(event.end)}</time>
           ${meta ? `<span>${escapeHtml(meta)}</span>` : ""}
+          ${campusUrl ? `<small class="ema-campus-hint">Campus ↗</small>` : ""}
         </article>`;
       }).join("");
       return `<section class="ema-day"><header>${escapeHtml(day.label)}</header><div class="ema-day-body" style="height:${bodyHeight}px">${events}</div></section>`;
@@ -352,11 +412,13 @@
     });
     app.querySelectorAll(".ema-event").forEach((card) => {
       const event = days[Number(card.dataset.day)]?.events[Number(card.dataset.event)];
-      if (!event?.sourceButton) return;
+      if (!event) return;
+      const campusUrl = campusUrlFor(event);
+      if (!campusUrl && !event.sourceButton) return;
       card.classList.add("ema-clickable");
       card.setAttribute("role", "button");
       card.setAttribute("tabindex", "0");
-      const openResource = () => event.sourceButton.click();
+      const openResource = () => campusUrl ? window.location.assign(campusUrl) : event.sourceButton.click();
       card.addEventListener("click", openResource);
       card.addEventListener("keydown", (keyboardEvent) => {
         if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") openResource();

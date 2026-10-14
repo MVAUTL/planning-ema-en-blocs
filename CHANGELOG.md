@@ -2,6 +2,13 @@
 
 Toutes les versions publiques de l’extension seront archivées avec un tag Git et une publication GitHub.
 
+## 1.5.0 — 14 octobre 2026
+
+- Clic sur un cours relié à la page correspondante de Campus Mines Alès.
+- Correspondance précise par numéro et intitulé lorsque la page de cours est connue.
+- Repli vers la bonne catégorie Campus pour les sections dont les cours détaillés ne sont pas encore disponibles.
+- Indicateur `Campus ↗` sur les blocs disposant d’un lien.
+
 ## 1.4.2 — 13 octobre 2026
 
 - Activation automatique sur les adresses hebdomadaires sans date, comme `eleve/20494/week/`.

@@ -12,6 +12,8 @@ Les liens hebdomadaires sans date, par exemple `index.php?url=eleve/20494/week/`
 
 Les cours portant la même référence numérique, par exemple `5.4.2`, utilisent toujours la même couleur dans le calendrier.
 
+Quand une correspondance Campus est connue, cliquer sur un bloc ouvre directement le cours sur `campus2.mines-ales.fr`. Pour une section encore repliée dans Campus, le clic ouvre la catégorie correspondant au numéro du cours.
+
 Cette extension transforme automatiquement le planning texte de Mines Alès en grille hebdomadaire. Les cours sont placés verticalement selon leur heure de début et leur durée.
 
 ## Installation dans Chrome / Edge

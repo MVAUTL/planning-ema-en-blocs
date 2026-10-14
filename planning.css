@@ -47,6 +47,8 @@ body.ema-enhanced.ema-show-original #ema-planning-app .ema-calendar { display: n
 #ema-planning-app .ema-event { position: absolute; left: 5px; right: 5px; min-height: 34px; overflow: hidden; padding: 8px 9px; border-left: 4px solid; border-radius: 8px; box-shadow: 0 3px 8px rgba(25,37,61,.09); }
 #ema-planning-app .ema-event.ema-clickable { cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
 #ema-planning-app .ema-event.ema-clickable:hover, #ema-planning-app .ema-event.ema-clickable:focus-visible { z-index: 4; outline: 2px solid rgba(79,124,255,.35); transform: translateY(-2px); box-shadow: 0 7px 16px rgba(25,37,61,.16); }
+#ema-planning-app .ema-campus-linked::after { content: ""; position: absolute; top: 7px; right: 7px; width: 6px; height: 6px; border-radius: 50%; background: #16a779; box-shadow: 0 0 0 2px rgba(255,255,255,.75); }
+#ema-planning-app .ema-campus-hint { display: block; margin-top: 4px; color: #16765a; font-size: 9px; font-weight: 800; letter-spacing: .02em; }
 #ema-planning-app .ema-event strong, #ema-planning-app .ema-event time, #ema-planning-app .ema-event span { display: block; overflow: hidden; text-overflow: ellipsis; }
 #ema-planning-app .ema-event strong { color: #1f2a3e; font-size: 12px; white-space: nowrap; }
 #ema-planning-app .ema-event time { margin-top: 2px; color: #526078; font-size: 10px; font-weight: 750; }
