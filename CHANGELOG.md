@@ -2,6 +2,12 @@
 
 Toutes les versions publiques de l’extension seront archivées avec un tag Git et une publication GitHub.
 
+## 1.6.0 — 14 octobre 2026
+
+- Catalogue complet des 65 cours MKX12 dépliés dans Campus.
+- Correspondance par numéro détaillé, intitulé normalisé et position dans l’UE.
+- `5.4.2` ouvre désormais directement le cours Électrotechnique au lieu de la catégorie 5.4.
+
 ## 1.5.0 — 14 octobre 2026
 
 - Clic sur un cours relié à la page correspondante de Campus Mines Alès.

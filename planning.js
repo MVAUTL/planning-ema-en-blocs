@@ -16,21 +16,7 @@
     "8.1": 566, "8.2": 576, "8.3": 577, "8.5": 578, "8.6": 586,
     "9.1": 588, "9.2": 589, "9.3a": 590, "9.3b": 591, "9.4": 593, "9.5": 592
   };
-  const CAMPUS_DIRECT_COURSES = {
-    "5.6": 2763,
-    "6.7": 2804,
-    "7.3a": 2776,
-    "7.5": 2779,
-    "8.4": 2840
-  };
-  const CAMPUS_NAMED_COURSES = [
-    { code: "5.1", words: ["analyse"], id: 2782 },
-    { code: "5.1", words: ["algebre"], id: 2783 },
-    { code: "5.2", words: ["analyse"], id: 2784 },
-    { code: "5.2", words: ["probabilites"], id: 2785 },
-    { code: "5.3", words: ["resistance", "materiaux"], id: 2786 },
-    { code: "5.3", words: ["mecanique", "milieux", "continus"], id: 2787 }
-  ];
+  const CAMPUS_COURSES = globalThis.EMA_CAMPUS_COURSES || [];
   const originalTitle = document.title;
 
   function clean(value) {
@@ -209,14 +195,33 @@
     const text = normalizedCourseText(event.details.join(" "));
     const rawCode = text.match(/\b[5-9]\.\d+(?:\.(?:\d+|[ab]))?\b/)?.[0];
     const code = rawCode?.replace(/\.(?=[ab]$)/, "");
+    const rootCode = code?.match(/^\d+\.\d+[ab]?/)?.[0];
+    const candidates = rootCode ? CAMPUS_COURSES.filter((course) => course.code === rootCode) : CAMPUS_COURSES;
+    const eventTokens = new Set(text.split(" ").filter((token) => token.length > 2));
+    let bestCourse = null;
+    let bestScore = 0;
 
-    const namedCourse = CAMPUS_NAMED_COURSES.find((course) =>
-      (!code || code.startsWith(course.code)) && course.words.every((word) => text.includes(word))
-    );
-    if (namedCourse) return `${CAMPUS_BASE}/course/view.php?id=${namedCourse.id}`;
+    for (const course of candidates) {
+      const titleTokens = normalizedCourseText(course.title).split(" ").filter((token) => token.length > 2);
+      const matchedTokens = titleTokens.filter((token) => eventTokens.has(token)).length;
+      const score = titleTokens.length ? matchedTokens / titleTokens.length : 0;
+      if (score > bestScore) {
+        bestCourse = course;
+        bestScore = score;
+      }
+    }
 
-    if (code && CAMPUS_DIRECT_COURSES[code]) {
-      return `${CAMPUS_BASE}/course/view.php?id=${CAMPUS_DIRECT_COURSES[code]}`;
+    if (bestCourse && bestScore >= 0.34) {
+      return `${CAMPUS_BASE}/course/view.php?id=${bestCourse.id}`;
+    }
+
+    const coursePosition = Number(rawCode?.match(/\.(\d+)$/)?.[1]);
+    if (coursePosition >= 1 && candidates[coursePosition - 1]) {
+      return `${CAMPUS_BASE}/course/view.php?id=${candidates[coursePosition - 1].id}`;
+    }
+
+    if (candidates.length === 1) {
+      return `${CAMPUS_BASE}/course/view.php?id=${candidates[0].id}`;
     }
 
     if (code) {

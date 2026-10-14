@@ -14,6 +14,8 @@ Les cours portant la même référence numérique, par exemple `5.4.2`, utilisen
 
 Quand une correspondance Campus est connue, cliquer sur un bloc ouvre directement le cours sur `campus2.mines-ales.fr`. Pour une section encore repliée dans Campus, le clic ouvre la catégorie correspondant au numéro du cours.
 
+Le catalogue Campus intégré contient 65 cours MKX12 des semestres S5 à S9. La correspondance utilise le numéro détaillé et l’intitulé du cours ; par exemple, `5.4.2` ouvre directement Électrotechnique.
+
 Cette extension transforme automatiquement le planning texte de Mines Alès en grille hebdomadaire. Les cours sont placés verticalement selon leur heure de début et leur durée.
 
 ## Installation dans Chrome / Edge
