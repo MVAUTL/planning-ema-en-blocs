@@ -22,6 +22,8 @@ Les blocs trop courts s’agrandissent au survol pour afficher leurs information
 
 La détection mesure le contenu réel : un bloc déjà entièrement lisible ne change pas de taille au survol.
 
+Lorsqu’une semaine ne contient aucun cours, l’interface reste affichée avec les commandes de navigation et le message daté fourni par le site.
+
 Cette extension transforme automatiquement le planning texte de Mines Alès en grille hebdomadaire. Les cours sont placés verticalement selon leur heure de début et leur durée.
 
 ## Installation dans Chrome / Edge

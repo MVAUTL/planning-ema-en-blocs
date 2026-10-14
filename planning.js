@@ -55,6 +55,11 @@
     return raw.split(/\r?\n/).map(clean).filter(Boolean).filter((line) => line.length < 400);
   }
 
+  function emptyWeekMessage() {
+    const text = clean(document.body.innerText || "");
+    return text.match(/Aucun\s+cours\s+pour\s+la\s+semaine\s+du\s+\d{1,2}\/\d{1,2}\/\d{4}\s+au\s+\d{1,2}\/\d{1,2}\/\d{4}/i)?.[0] || null;
+  }
+
   function isLoginPage() {
     return Boolean(
       document.querySelector('form[action*="/login/"] input[type="password"]') ||
@@ -333,7 +338,7 @@
     </div>`;
   }
 
-  function render(days) {
+  function render(days, noCourseMessage = null) {
     const navigation = collectNavigation();
     const context = planningContext();
     const allEvents = days.flatMap((day) => day.events);
@@ -390,7 +395,7 @@
         </div>
       </div>
       ${weekPickerHtml(context)}
-      ${days.length ? `<div class="ema-calendar"><aside class="ema-hours" style="height:${calendarBodyHeight}px">${hours.join("")}</aside><main>${columns}</main></div>` : `<div class="ema-empty"><h2>Aucun horaire détecté</h2><p>Le format de cette page n’a pas encore été reconnu.</p><button id="ema-original" type="button">Afficher la page originale</button></div>`}
+      ${days.length ? `<div class="ema-calendar"><aside class="ema-hours" style="height:${calendarBodyHeight}px">${hours.join("")}</aside><main>${columns}</main></div>` : `<div class="ema-empty"><h2>${noCourseMessage ? "Aucun cours cette semaine" : "Aucun horaire détecté"}</h2><p>${escapeHtml(noCourseMessage || "Le format de cette page n’a pas encore été reconnu.")}</p><button id="ema-original" type="button">Afficher la page originale</button></div>`}
     </div>`;
 
     document.body.appendChild(app);
@@ -469,15 +474,18 @@
 
     const exactPlanning = parseEmaDom();
     const days = exactPlanning.length ? exactPlanning : parsePlanning(sourceLines());
-    const signature = days.map((day) => `${day.label}:${day.events.map((event) => `${event.start}-${event.end}-${event.details[0] || ""}`).join(",")}`).join("|");
-    if (!days.length || signature === renderedSignature) return;
+    const noCourseMessage = emptyWeekMessage();
+    const signature = days.length
+      ? days.map((day) => `${day.label}:${day.events.map((event) => `${event.start}-${event.end}-${event.details[0] || ""}`).join(",")}`).join("|")
+      : `empty:${noCourseMessage || ""}`;
+    if ((!days.length && !noCourseMessage) || signature === renderedSignature) return;
 
     renderedSignature = signature;
     observer?.disconnect();
     const showedOriginal = document.body.classList.contains("ema-show-original");
     document.getElementById("ema-planning-app")?.remove();
     document.body.classList.remove("ema-enhanced", "ema-show-original");
-    render(days);
+    render(days, noCourseMessage);
     if (showedOriginal) {
       document.body.classList.add("ema-show-original");
       const toggleButton = document.getElementById("ema-toggle");

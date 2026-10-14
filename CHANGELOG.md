@@ -2,6 +2,11 @@
 
 Toutes les versions publiques de l’extension seront archivées avec un tag Git et une publication GitHub.
 
+## 1.6.4 — 14 octobre 2026
+
+- Affichage de l’interface en blocs même pendant une semaine sans aucun cours.
+- Conservation de la navigation et du sélecteur de semaines avec le message et les dates fournis par le site.
+
 ## 1.6.3 — 14 octobre 2026
 
 - Agrandissement limité aux blocs dont le contenu est réellement tronqué.
