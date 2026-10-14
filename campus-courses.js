@@ -12,6 +12,8 @@ globalThis.EMA_CAMPUS_COURSES = [
   { code: "5.5", title: "Principes et outils de la performance industrielle", id: 2790 },
   { code: "5.5", title: "Ingenierie systeme principes analyse de mission et ingenierie des exigences", id: 2791 },
   { code: "5.6", title: "Developpement de l ingenieur manager", id: 2763 },
+  { code: "5.7", title: "Anglais", id: 2380 },
+  { code: "5.7", title: "Langue vivante 2 LV2", id: 2469 },
   { code: "6.1", title: "Analyse 2", id: 2792 },
   { code: "6.1", title: "Fondements de l IA", id: 2793 },
   { code: "6.2", title: "Traitement du signal", id: 2794 },

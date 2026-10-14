@@ -2,6 +2,11 @@
 
 Toutes les versions publiques de l’extension seront archivées avec un tag Git et une publication GitHub.
 
+## 1.6.1 — 14 octobre 2026
+
+- Ajout de `5.7.1 – Anglais` et `5.7.2 – Langue vivante 2` au catalogue Campus.
+- Les liens Campus s’ouvrent maintenant dans un nouvel onglet afin de conserver le planning ouvert.
+
 ## 1.6.0 — 14 octobre 2026
 
 - Catalogue complet des 65 cours MKX12 dépliés dans Campus.

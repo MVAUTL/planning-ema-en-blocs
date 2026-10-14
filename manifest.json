@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Planning EMA en blocs",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Transforme le planning élèves de Mines Alès en calendrier visuel.",
   "content_scripts": [
     {

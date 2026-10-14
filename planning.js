@@ -423,7 +423,14 @@
       card.classList.add("ema-clickable");
       card.setAttribute("role", "button");
       card.setAttribute("tabindex", "0");
-      const openResource = () => campusUrl ? window.location.assign(campusUrl) : event.sourceButton.click();
+      const openResource = () => {
+        if (campusUrl) {
+          const campusTab = window.open(campusUrl, "_blank", "noopener,noreferrer");
+          if (campusTab) campusTab.opener = null;
+        } else {
+          event.sourceButton.click();
+        }
+      };
       card.addEventListener("click", openResource);
       card.addEventListener("keydown", (keyboardEvent) => {
         if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") openResource();
