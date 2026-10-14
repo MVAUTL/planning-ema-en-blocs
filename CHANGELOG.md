@@ -2,6 +2,12 @@
 
 Toutes les versions publiques de l’extension seront archivées avec un tag Git et une publication GitHub.
 
+## 1.6.2 — 14 octobre 2026
+
+- Agrandissement des petits blocs au survol ou lors de la navigation au clavier.
+- Marge supplémentaire sous la dernière heure affichée.
+- Coins inférieurs arrondis pour terminer proprement la grille.
+
 ## 1.6.1 — 14 octobre 2026
 
 - Ajout de `5.7.1 – Anglais` et `5.7.2 – Langue vivante 2` au catalogue Campus.

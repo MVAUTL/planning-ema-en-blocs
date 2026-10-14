@@ -18,6 +18,8 @@ Le catalogue Campus intégré contient 67 cours MKX12 et de langues. La correspo
 
 Les liens Campus s’ouvrent dans un nouvel onglet. Les cours de langues `5.7.1 – Anglais` et `5.7.2 – Langue vivante 2` sont également reconnus.
 
+Les blocs trop courts s’agrandissent au survol pour afficher leurs informations. La grille conserve une marge sous la dernière heure et des coins arrondis en bas.
+
 Cette extension transforme automatiquement le planning texte de Mines Alès en grille hebdomadaire. Les cours sont placés verticalement selon leur heure de début et leur durée.
 
 ## Installation dans Chrome / Edge

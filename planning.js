@@ -344,6 +344,8 @@
     const span = Math.max(60, end - start);
     const hourHeight = 72;
     const bodyHeight = (span / 60) * hourHeight;
+    const bottomPadding = 30;
+    const calendarBodyHeight = bodyHeight + bottomPadding;
     const app = document.createElement("div");
     app.id = "ema-planning-app";
 
@@ -365,7 +367,7 @@
           ${campusUrl ? `<small class="ema-campus-hint">Campus ↗</small>` : ""}
         </article>`;
       }).join("");
-      return `<section class="ema-day"><header>${escapeHtml(day.label)}</header><div class="ema-day-body" style="height:${bodyHeight}px">${events}</div></section>`;
+      return `<section class="ema-day"><header>${escapeHtml(day.label)}</header><div class="ema-day-body" style="height:${calendarBodyHeight}px">${events}</div></section>`;
     }).join("");
 
     const hours = [];
@@ -388,7 +390,7 @@
         </div>
       </div>
       ${weekPickerHtml(context)}
-      ${days.length ? `<div class="ema-calendar"><aside class="ema-hours" style="height:${bodyHeight}px">${hours.join("")}</aside><main>${columns}</main></div>` : `<div class="ema-empty"><h2>Aucun horaire détecté</h2><p>Le format de cette page n’a pas encore été reconnu.</p><button id="ema-original" type="button">Afficher la page originale</button></div>`}
+      ${days.length ? `<div class="ema-calendar"><aside class="ema-hours" style="height:${calendarBodyHeight}px">${hours.join("")}</aside><main>${columns}</main></div>` : `<div class="ema-empty"><h2>Aucun horaire détecté</h2><p>Le format de cette page n’a pas encore été reconnu.</p><button id="ema-original" type="button">Afficher la page originale</button></div>`}
     </div>`;
 
     document.body.appendChild(app);

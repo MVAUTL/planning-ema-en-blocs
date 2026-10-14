@@ -37,16 +37,17 @@ body.ema-enhanced.ema-show-original #ema-planning-app .ema-calendar { display: n
 #ema-planning-app .ema-year-button { padding: 8px 10px; border: 1px solid #dce3ee; background: #fff; color: #526078; box-shadow: none; font-size: 11px; }
 #ema-planning-app .ema-year-button:hover { background: #f2f5fa; }
 #ema-planning-app .ema-calendar { display: flex; width: 100%; max-width: 1500px; margin: 0 auto; overflow: visible; border: 1px solid #e3e8f0; border-radius: 18px; background: white; box-shadow: 0 16px 40px rgba(31,45,70,.09); }
-#ema-planning-app .ema-hours { position: relative; flex: 0 0 65px; margin-top: 53px; border-right: 1px solid #e9edf4; background: #fbfcfe; }
+#ema-planning-app .ema-hours { position: relative; flex: 0 0 65px; margin-top: 53px; border-right: 1px solid #e9edf4; border-radius: 0 0 0 18px; background: #fbfcfe; }
 #ema-planning-app .ema-hours span { position: absolute; right: 12px; z-index: 2; color: #8792a5; font-size: 11px; font-weight: 650; transform: translateY(-50%); }
 #ema-planning-app main { display: grid; grid-auto-columns: minmax(145px, 1fr); grid-auto-flow: column; min-width: max(650px, calc(100% - 65px)); flex: 1; }
 #ema-planning-app .ema-day { min-width: 0; border-right: 1px solid #e9edf4; }
 #ema-planning-app .ema-day:last-child { border-right: 0; }
+#ema-planning-app .ema-day:last-child .ema-day-body { border-radius: 0 0 18px 0; }
 #ema-planning-app .ema-day header { position: sticky; top: 0; z-index: 5; height: 53px; padding: 17px 10px; overflow: hidden; border-bottom: 1px solid #e3e8f0; background: rgba(255,255,255,.96); color: #3c485d; font-size: 13px; font-weight: 750; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
 #ema-planning-app .ema-day-body { position: relative; background: repeating-linear-gradient(to bottom, transparent 0, transparent 71px, #edf0f5 71px, #edf0f5 72px); }
 #ema-planning-app .ema-event { position: absolute; left: 5px; right: 5px; min-height: 34px; overflow: hidden; padding: 8px 9px; border-left: 4px solid; border-radius: 8px; box-shadow: 0 3px 8px rgba(25,37,61,.09); }
 #ema-planning-app .ema-event.ema-clickable { cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
-#ema-planning-app .ema-event.ema-clickable:hover, #ema-planning-app .ema-event.ema-clickable:focus-visible { z-index: 4; outline: 2px solid rgba(79,124,255,.35); transform: translateY(-2px); box-shadow: 0 7px 16px rgba(25,37,61,.16); }
+#ema-planning-app .ema-event.ema-clickable:hover, #ema-planning-app .ema-event.ema-clickable:focus-visible { z-index: 10; height: auto !important; min-height: 96px; overflow: visible; outline: 2px solid rgba(79,124,255,.35); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(25,37,61,.22); }
 #ema-planning-app .ema-campus-linked::after { content: ""; position: absolute; top: 7px; right: 7px; width: 6px; height: 6px; border-radius: 50%; background: #16a779; box-shadow: 0 0 0 2px rgba(255,255,255,.75); }
 #ema-planning-app .ema-campus-hint { display: block; margin-top: 4px; color: #16765a; font-size: 9px; font-weight: 800; letter-spacing: .02em; }
 #ema-planning-app .ema-event strong, #ema-planning-app .ema-event time, #ema-planning-app .ema-event span { display: block; overflow: hidden; text-overflow: ellipsis; }
