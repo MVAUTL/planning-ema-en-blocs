@@ -438,6 +438,11 @@
         if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") openResource();
       });
     });
+    window.requestAnimationFrame(() => {
+      app.querySelectorAll(".ema-event").forEach((card) => {
+        card.classList.toggle("ema-overflowing", card.scrollHeight > card.clientHeight + 1);
+      });
+    });
   }
 
   const undatedContext = undatedPlanningContext();

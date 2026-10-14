@@ -2,6 +2,11 @@
 
 Toutes les versions publiques de l’extension seront archivées avec un tag Git et une publication GitHub.
 
+## 1.6.3 — 14 octobre 2026
+
+- Agrandissement limité aux blocs dont le contenu est réellement tronqué.
+- Hauteur minimale agrandie réduite de 96 à 88 pixels.
+
 ## 1.6.2 — 14 octobre 2026
 
 - Agrandissement des petits blocs au survol ou lors de la navigation au clavier.

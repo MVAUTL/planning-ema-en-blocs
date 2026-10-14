@@ -20,6 +20,8 @@ Les liens Campus s’ouvrent dans un nouvel onglet. Les cours de langues `5.7.1 
 
 Les blocs trop courts s’agrandissent au survol pour afficher leurs informations. La grille conserve une marge sous la dernière heure et des coins arrondis en bas.
 
+La détection mesure le contenu réel : un bloc déjà entièrement lisible ne change pas de taille au survol.
+
 Cette extension transforme automatiquement le planning texte de Mines Alès en grille hebdomadaire. Les cours sont placés verticalement selon leur heure de début et leur durée.
 
 ## Installation dans Chrome / Edge
